@@ -1,3 +1,6 @@
+
+import {qs} from './helpers/dom.js'
+import { EL } from './helpers/domevents.js'
 class Pessoa {
     #name
     #age
@@ -43,16 +46,18 @@ function createPerson(name, age) {
 }
 
 function clear(){
+    if(vetor == null) undefined || null
+    else{
     vetor.forEach((p, index) => {
         document.getElementById("li_" + index).remove();
         document.getElementById("but_" + index).remove();
     })
-}
+}}
+
 
 
 function print() {
-
-    const tag = document.querySelector('ul')
+    const tag = qs('ul')
 
     vetor.forEach((p, index) => {
         const liEL = document.createElement('li')
@@ -80,3 +85,21 @@ function onload(){
 }
 
 
+// ----------
+
+const form = document.querySelector( 'form' )
+
+
+function e(evt){
+    evt.preventDefault();
+    if(evt.target.name.value!=='' && evt.target.age.value!=='' && evt.target.age.value >0  && evt.target.age.value <121)
+        createPerson(evt.target.name.value, evt.target.age.value)
+        else{
+            alert("Invalid information");
+        } 
+}
+
+
+EL(form, 'submit', e)
+
+onload()
