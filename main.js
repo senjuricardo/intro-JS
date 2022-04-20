@@ -55,9 +55,21 @@ function clear(){
 }}
 
 
-
+function h1(){
+    const tag2 = document.getElementById("title")
+    const h1EL = document.createElement('h1')
+    h1EL.textContent = "Exercicio listagem"
+    tag2.append(h1EL)
+    h1EL.className = "text-center"
+}
+h1()
 function print() {
+
+
+
+    
     const tag = qs('ul')
+    
 
     vetor.forEach((p, index) => {
         const liEL = document.createElement('li')
@@ -67,6 +79,9 @@ function print() {
         liEL.textContent = `${p.getName()} - ${p.getAge()}`
         liEL.id = "li_" + index;
         but.id = "but_" + index;    
+
+        but.className = "btn btn-danger"
+        liEL.classList ="font-weight-bold"
 
         tag.append(liEL, but)
 
